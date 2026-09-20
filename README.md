@@ -1,4 +1,4 @@
-# Tugas Mandiri Minggu 2: Pengembangan Halaman Web Portofolio & Layanan Interaktif Accessible
+# Pengembangan Halaman Web Portofolio & Layanan Interaktif Accessible Berbasis HTML5 dan Modern CSS
 
 Repositori ini memuat pengerjaan Tugas Mandiri mata kuliah Web Application Programming and Testing.
 
