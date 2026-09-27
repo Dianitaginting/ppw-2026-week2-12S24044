@@ -1,33 +1,89 @@
 /* =============================================================
-   CUSTOM OVERRIDES & THEMING (BOOTSTRAP 5 INTEGRATION)
+   ENTERPRISE THEMING & CUSTOM OVERRIDES (BOOTSTRAP 5.3 INTEGRATION)
    ============================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-/* 1. MENDENFINISIKAN MINIMAL 6 VARIABEL CSS PADA :root */
+/* 1. VARIABEL CSS KUSTOM PADA :root */
 :root {
   --primary-brand: #2563eb;
-  --primary-hover: #1d4ed8;
+  --primary-dark: #1d4ed8;
+  --primary-glow: #60a5fa;
   --dark-navy: #0f172a;
-  --surface-bg: #ffffff;
+  --bg-body: #f8fafc;
+  --surface-card: #ffffff;
   --border-color: #e2e8f0;
   --text-muted: #64748b;
-  --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
-  --shadow-lift: 0 12px 25px -4px rgba(37, 99, 235, 0.15);
+  --shadow-subtle: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 16px 32px -8px rgba(37, 99, 235, 0.16);
 }
 
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-body);
   color: var(--dark-navy);
+  letter-spacing: -0.01em;
 }
 
-/* 2. AVATAR CROPPING & ZOOM */
-.avatar-wrapper {
-  width: 110px;
-  height: 110px;
+/* 2. NAVBAR GLASSMORPHISM */
+.custom-navbar {
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.brand-badge {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.brand-text { color: #ffffff; }
+.brand-highlight { color: var(--primary-glow); }
+
+.custom-navbar .nav-link {
+  color: #94a3b8;
+  font-weight: 500;
+  padding: 8px 14px;
+  transition: all 0.2s ease;
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link.active {
+  color: #ffffff;
+}
+
+/* 3. PRO CARDS & ISOLASI FOTO PROFIL UNTUK MELINDUNGI BADGE */
+.pro-card, .sidebar-pro-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-subtle);
+}
+
+.hero-subtle-glow {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.avatar-fixed-box {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
   overflow: hidden;
+  border: 4px solid #ffffff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  display: block;
 }
 
-.avatar-img {
+.avatar-cropped-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -35,50 +91,115 @@ body {
   transform: scale(1.6);
 }
 
-/* 3. MIKRO-INTERAKSI HOVER KARTU METRIK & PORTOFOLIO */
-.metric-card {
-  position: relative;
-  background: var(--surface-bg);
+/* 4. BUTTONS & METRICS */
+.btn-primary-pro {
+  background: var(--primary-brand);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+  transition: all 0.25s ease;
+}
+
+.btn-primary-pro:hover {
+  background: var(--primary-dark);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.btn-outline-pro {
   border: 1px solid var(--border-color);
+  color: var(--dark-navy);
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+.btn-outline-pro:hover {
+  background: #f1f5f9;
+  color: var(--dark-navy);
+}
+
+.metric-pro {
+  transition: all 0.25s ease;
+}
+
+.metric-pro:hover {
+  border-color: var(--primary-brand);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-subtle);
+}
+
+.metric-icon-pro {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 5. PROJECT CARDS */
+.project-card-pro {
+  background: #ffffff;
   border-radius: 12px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+  transition: all 0.25s ease;
 }
 
-.metric-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background-color: var(--primary-brand);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-
-.metric-card:hover::before {
-  transform: scaleX(1);
-}
-
-.metric-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lift);
-}
-
-.custom-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  border-color: var(--border-color);
-}
-
-.custom-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lift);
+.project-card-pro:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
   border-color: var(--primary-brand);
 }
 
-/* 4. OVERRIDE WARNA FORM FLOATING LABELS */
+.bg-gradient-blue    { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+.bg-gradient-emerald { background: linear-gradient(135deg, #059669, #047857); }
+.bg-gradient-slate   { background: linear-gradient(135deg, #334155, #0f172a); }
+.bg-gradient-indigo  { background: linear-gradient(135deg, #4f46e5, #3730a3); }
+
+.tag-badge {
+  font-size: 11px;
+  padding: 3px 8px;
+  background: #f1f5f9;
+  color: #475569;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* 6. TIMELINE & EXTRA STYLES */
+.achievement-card {
+  background: #fafafa;
+  transition: all 0.2s ease;
+}
+
+.achievement-card:hover {
+  background: #ffffff;
+  border-color: var(--primary-brand);
+  box-shadow: var(--shadow-subtle);
+}
+
+.achieve-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.extra-small {
+  font-size: 11.5px;
+}
+
+.quality-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  border-left: 5px solid var(--primary-brand);
+  box-shadow: var(--shadow-subtle);
+}
+
 .form-control:focus, .form-select:focus {
   border-color: var(--primary-brand);
-  box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }

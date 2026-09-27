@@ -3,91 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dianita Ginting - Portofolio & Portal Layanan (Bootstrap 5)</title>
+  <title>Dianita Ginting — Portofolio & Portal Layanan (Bootstrap 5)</title>
   
   <!-- 1. Bootstrap 5.3.3 CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- 2. Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <!-- 3. Custom CSS Overrides (Dimuat Setelah Bootstrap) -->
-  <link rel="stylesheet" href="style.css">
+  <!-- 3. Custom Style Overrides -->
+  <link rel="stylesheet" href="style.css?v=3.0">
 </head>
-<body class="bg-light">
+<body>
 
-  <!-- HEADER & RESPONSIVE NAVBAR STICKY -->
+  <!-- HEADER & NAVBAR STICKY GLASSMORPHISM -->
   <header class="sticky-top">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
+    <nav class="navbar navbar-expand-lg custom-navbar py-3">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#">Dianita<span class="text-primary">.Del</span></a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
+          <span class="brand-badge">DG</span>
+          <span class="brand-text">Dianita<span class="brand-highlight">.Del</span></span>
+        </a>
+        <button class="navbar-toggler border-0 shadow-none text-white" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mainNavbar">
-          <ul class="navbar-nav ms-auto gap-lg-2">
-            <li class="nav-item"><a class="nav-link active" href="#tentang"><i class="bi bi-person me-1"></i> Beranda</a></li>
-            <li class="nav-item"><a class="nav-link" href="#portofolio"><i class="bi bi-briefcase me-1"></i> Portofolio</a></li>
+          <ul class="navbar-nav ms-auto gap-lg-1 mt-3 mt-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="#tentang"><i class="bi bi-person me-1"></i> Profil</a></li>
+            <li class="nav-item"><a class="nav-link" href="#portofolio"><i class="bi bi-layers me-1"></i> Portofolio</a></li>
             <li class="nav-item"><a class="nav-link" href="#pengalaman"><i class="bi bi-award me-1"></i> Pengalaman</a></li>
-            <li class="nav-item"><a class="nav-link" href="#layanan"><i class="bi bi-envelope me-1"></i> Layanan</a></li>
+            <li class="nav-item"><a class="nav-link" href="#layanan"><i class="bi bi-briefcase me-1"></i> Layanan</a></li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
 
-  <div class="container my-4">
+  <!-- MAIN CONTAINER WITH 12-COLUMN GRID -->
+  <div class="container my-5">
     <div class="row g-4">
-      <!-- MAIN CONTENT AREA -->
+      
+      <!-- MAIN CONTENT AREA (8-Kolom Desktop) -->
       <main class="col-lg-8">
 
-        <!-- SECTION 1: HERO PROFIL & CALL TO ACTION (CTA) -->
-        <section id="tentang" class="card border-0 shadow-sm p-4 mb-4">
-          <div class="d-flex flex-column flex-md-row align-items-center gap-4 mb-3">
-            <div class="avatar-wrapper flex-shrink-0">
-              <img src="foto-profil.jpeg" alt="Foto Dianita Lorensia Br Ginting" class="avatar-img rounded-circle border border-3 border-primary shadow-sm">
+        <!-- SECTION 1: HERO PROFIL (DESAIN ELEGAN DENGAN SPASI SIMETRIS) -->
+        <section id="tentang" class="pro-card p-4 p-md-5 mb-4 position-relative overflow-hidden">
+          <div class="hero-subtle-glow"></div>
+          
+          <div class="d-flex flex-column align-items-center text-center position-relative z-1 mb-4">
+            <!-- Foto Profil Tertata Rapi Tanpa Menindih Badge -->
+            <div class="avatar-fixed-box mb-4">
+              <img src="foto-profil.jpeg" alt="Foto Dianita Lorensia Br Ginting" class="avatar-cropped-img">
             </div>
-            <div>
-              <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill mb-2">
-                <i class="bi bi-mortarboard-fill me-1"></i> S1 Sistem Informasi IT Del
-              </span>
-              <h1 class="h3 fw-bold text-dark mb-1">Dianita Lorensia Br Ginting</h1>
-              <p class="text-primary fw-semibold mb-1">Frontend Developer &bull; UI/UX Designer &bull; Software Engineer</p>
-              <p class="text-muted small mb-0"><i class="bi bi-geo-alt-fill text-danger me-1"></i> Medan / Toba, Sumatera Utara | <strong>NIM:</strong> 12S24044</p>
+            
+            <!-- Badge & Teks Nama Berdiri Mandiri di Bawah Foto -->
+            <div class="w-100">
+              <div class="mb-2">
+                <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-2 rounded-pill border border-primary-subtle">
+                  <i class="bi bi-mortarboard-fill me-1"></i> S1 Sistem Informasi IT Del
+                </span>
+              </div>
+              <h1 class="h2 fw-extrabold text-dark tracking-tight mb-1">Dianita Lorensia Br Ginting</h1>
+              <p class="text-primary fw-bold mb-2">Frontend Developer &bull; UI/UX Designer &bull; Software Engineer</p>
+              <p class="text-muted small mb-0">
+                <i class="bi bi-geo-alt text-danger me-1"></i> Medan / Toba, North Sumatra 
+                <span class="mx-2">&bull;</span> 
+                <span class="fw-semibold text-dark">NIM: 12S24044</span>
+              </p>
             </div>
           </div>
 
-          <hr class="text-secondary opacity-25 my-3">
-
-          <p class="text-secondary lh-base mb-3">
-            Saya adalah mahasiswa S1 Sistem Informasi IT Del yang berfokus pada perancangan antarmuka intuitif (UI/UX), pengembangan web frontend responsif, dan logika pemecahan masalah berstandar Object-Oriented Programming (OOP) yang bersih.
+          <p class="text-secondary leading-relaxed mb-4 text-center text-md-start">
+            Mahasiswa S1 Sistem Informasi Institut Teknologi Del dengan spesialisasi dalam perancangan antarmuka intuitif (UI/UX Design), pemetaan pengalaman pengguna, serta pengembangan frontend modern yang berstandar aksesibilitas (WCAG 2.2 AA) dan berdaya guna tinggi.
           </p>
 
-          <!-- Call To Action (CTA) Button -->
-          <div class="d-flex gap-2 mb-4">
-            <a href="#layanan" class="btn btn-primary fw-bold px-4 rounded-pill"><i class="bi bi-send-fill me-1"></i> Minta Konsultasi</a>
-            <a href="#portofolio" class="btn btn-outline-secondary fw-bold px-4 rounded-pill"><i class="bi bi-grid-fill me-1"></i> Lihat Karya</a>
+          <!-- Action CTA Buttons -->
+          <div class="d-flex justify-content-center justify-content-md-start flex-wrap gap-3 mb-4">
+            <a href="#layanan" class="btn btn-primary-pro fw-bold px-4 py-2-5 rounded-3"><i class="bi bi-send-fill me-2"></i>Konsultasi Proyek</a>
+            <a href="#portofolio" class="btn btn-outline-pro fw-bold px-4 py-2-5 rounded-3"><i class="bi bi-grid-3x3-gap-fill me-2"></i>Eksplorasi Karya</a>
           </div>
 
-          <!-- MIKRO-INTERAKSI METRIC CARDS -->
-          <h2 class="h5 fw-bold mb-3"><i class="bi bi-bar-chart-line text-primary me-2"></i> Ringkasan Capaian Ringkas</h2>
+          <!-- EXECUTIVE METRIC CARDS -->
           <div class="row g-3">
             <div class="col-md-6">
-              <div class="metric-card bg-white border rounded-3 p-3 position-relative overflow-hidden shadow-sm">
+              <div class="metric-pro p-3 rounded-3 border bg-white">
                 <div class="d-flex align-items-center gap-3">
-                  <div class="fs-2 text-primary"><i class="bi bi-folder-check"></i></div>
+                  <div class="metric-icon-pro bg-primary-subtle text-primary"><i class="bi bi-folder-check fs-4"></i></div>
                   <div>
-                    <span class="metric-label d-block text-muted small">Proyek Selesai</span>
-                    <strong class="metric-value fs-4 text-dark">4 Proyek Utama</strong>
+                    <span class="text-muted extra-small text-uppercase fw-bold">Rekapitulasi Proyek</span>
+                    <strong class="d-block text-dark fs-5">4 Karya Utama</strong>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-6">
-              <div class="metric-card bg-white border rounded-3 p-3 position-relative overflow-hidden shadow-sm">
+              <div class="metric-pro p-3 rounded-3 border bg-white">
                 <div class="d-flex align-items-center gap-3">
-                  <div class="fs-2 text-success"><i class="bi bi-patch-check"></i></div>
+                  <div class="metric-icon-pro bg-success-subtle text-success"><i class="bi bi-shield-check fs-4"></i></div>
                   <div>
-                    <span class="metric-label d-block text-muted small">Standar Aksesibilitas</span>
-                    <strong class="metric-value fs-4 text-dark">WCAG 2.2 Level AA</strong>
+                    <span class="text-muted extra-small text-uppercase fw-bold">Kepatuhan Standar</span>
+                    <strong class="d-block text-dark fs-5">WCAG 2.2 Level AA</strong>
                   </div>
                 </div>
               </div>
@@ -95,41 +108,57 @@
           </div>
         </section>
 
-        <!-- SECTION 2: GRID PORTOFOLIO (4 KARTU + MODAL DIALOG) -->
-        <section id="portofolio" class="card border-0 shadow-sm p-4 mb-4">
-          <h2 class="h4 fw-bold text-dark mb-1">Rekapitulasi Proyek & Portofolio Karya</h2>
-          <p class="text-muted small mb-4">Klik tombol detail pada kartu untuk melihat informasi proyek dalam modal popup.</p>
+        <!-- SECTION 2: GRID PORTOFOLIO (4 KARTU + MODAL POP-UP) -->
+        <section id="portofolio" class="pro-card p-4 p-md-5 mb-4">
+          <div class="d-flex justify-content-between align-items-end mb-4">
+            <div>
+              <span class="text-primary fw-bold text-uppercase extra-small tracking-wider">Showcase Portofolio</span>
+              <h2 class="h3 fw-bold text-dark mb-0">Rekapitulasi Proyek & Karya</h2>
+            </div>
+          </div>
 
-          <!-- Grid Responsif 4 Kartu Proyek -->
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
-            
-            <!-- Kartu 1 (Terhubung ke Modal 1) -->
+          <div class="row row-cols-1 row-cols-md-2 g-4">
+            <!-- Kartu 1 -->
             <div class="col">
-              <div class="card h-100 border shadow-sm custom-card">
-                <div class="card-body">
-                  <span class="badge bg-primary-subtle text-primary mb-2"><i class="bi bi-figma me-1"></i> Figma UI/UX</span>
-                  <h3 class="h5 card-title fw-bold text-dark mb-2">Globora</h3>
-                  <p class="card-text text-muted small">Aplikasi Layanan Wisata & Perjalanan Terpadu dengan sistem pemesanan tiket otomatis.</p>
+              <div class="card h-100 project-card-pro border">
+                <div class="project-header p-3 bg-gradient-blue text-white d-flex justify-content-between align-items-center">
+                  <span class="badge bg-white text-primary fw-bold">UI/UX Design</span>
+                  <i class="bi bi-figma fs-5"></i>
                 </div>
-                <div class="card-footer bg-transparent border-0 pt-0 pb-3">
-                  <button type="button" class="btn btn-outline-primary btn-sm w-100 fw-bold" data-bs-toggle="modal" data-bs-target="#modalGlobora">
-                    <i class="bi bi-eye-fill me-1"></i> Detail Proyek
+                <div class="card-body p-4">
+                  <h3 class="h5 fw-bold text-dark mb-2">Globora</h3>
+                  <p class="text-muted small mb-3">Platform digital pariwisata terpadu dengan pemesanan tiket otomatis dan navigasi rute intuitif.</p>
+                  <div class="d-flex flex-wrap gap-1 mb-2">
+                    <span class="tag-badge">Figma</span>
+                    <span class="tag-badge">Wireframing</span>
+                  </div>
+                </div>
+                <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
+                  <button type="button" class="btn btn-outline-primary btn-sm w-100 fw-bold rounded-2" data-bs-toggle="modal" data-bs-target="#modalGlobora">
+                    <i class="bi bi-arrow-up-right-circle me-1"></i> Rincian Proyek
                   </button>
                 </div>
               </div>
             </div>
 
-            <!-- Kartu 2 (Terhubung ke Modal 2) -->
+            <!-- Kartu 2 -->
             <div class="col">
-              <div class="card h-100 border shadow-sm custom-card">
-                <div class="card-body">
-                  <span class="badge bg-success-subtle text-success mb-2"><i class="bi bi-heart-pulse me-1"></i> Health Tech</span>
-                  <h3 class="h5 card-title fw-bold text-dark mb-2">SiMuni</h3>
-                  <p class="card-text text-muted small">Sistem informasi pengingat dan rekaman jadwal imunisasi anak terintegrasi.</p>
+              <div class="card h-100 project-card-pro border">
+                <div class="project-header p-3 bg-gradient-emerald text-white d-flex justify-content-between align-items-center">
+                  <span class="badge bg-white text-success fw-bold">Health Tech</span>
+                  <i class="bi bi-heart-pulse-fill fs-5"></i>
                 </div>
-                <div class="card-footer bg-transparent border-0 pt-0 pb-3">
-                  <button type="button" class="btn btn-outline-primary btn-sm w-100 fw-bold" data-bs-toggle="modal" data-bs-target="#modalSiMuni">
-                    <i class="bi bi-eye-fill me-1"></i> Detail Proyek
+                <div class="card-body p-4">
+                  <h3 class="h5 fw-bold text-dark mb-2">SiMuni</h3>
+                  <p class="text-muted small mb-3">Sistem pengingat dan rekam medis imunisasi anak berbasis mobile web responsif.</p>
+                  <div class="d-flex flex-wrap gap-1 mb-2">
+                    <span class="tag-badge">System Design</span>
+                    <span class="tag-badge">UI Prototype</span>
+                  </div>
+                </div>
+                <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
+                  <button type="button" class="btn btn-outline-primary btn-sm w-100 fw-bold rounded-2" data-bs-toggle="modal" data-bs-target="#modalSiMuni">
+                    <i class="bi bi-arrow-up-right-circle me-1"></i> Rincian Proyek
                   </button>
                 </div>
               </div>
@@ -137,119 +166,195 @@
 
             <!-- Kartu 3 -->
             <div class="col">
-              <div class="card h-100 border shadow-sm custom-card">
-                <div class="card-body">
-                  <span class="badge bg-warning-subtle text-warning-emphasis mb-2"><i class="bi bi-geo-alt me-1"></i> GIS & Web</span>
-                  <h3 class="h5 card-title fw-bold text-dark mb-2">Rute Evakuasi Bencana</h3>
-                  <p class="card-text text-muted small">Pemetaan rute terdekat titik evakuasi bencana di wilayah Banda Aceh berbasis JS/HTML5.</p>
+              <div class="card h-100 project-card-pro border">
+                <div class="project-header p-3 bg-gradient-slate text-white d-flex justify-content-between align-items-center">
+                  <span class="badge bg-white text-dark fw-bold">Frontend Web</span>
+                  <i class="bi bi-geo-alt-fill fs-5"></i>
                 </div>
-                <div class="card-footer bg-transparent border-0 pt-0 pb-3">
-                  <button type="button" class="btn btn-outline-secondary btn-sm w-100 disabled fw-bold">Proyek Aktif</button>
+                <div class="card-body p-4">
+                  <h3 class="h5 fw-bold text-dark mb-2">Pemetaan Evakuasi Bencana</h3>
+                  <p class="text-muted small mb-3">Sistem informasi pemetaan rute evakuasi darurat di Banda Aceh berbasis JavaScript API.</p>
+                  <div class="d-flex flex-wrap gap-1 mb-2">
+                    <span class="tag-badge">JS ES6+</span>
+                    <span class="tag-badge">HTML5/CSS3</span>
+                  </div>
+                </div>
+                <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
+                  <button type="button" class="btn btn-light btn-sm w-100 text-muted disabled fw-bold rounded-2">Pengembangan Aktif</button>
                 </div>
               </div>
             </div>
 
             <!-- Kartu 4 -->
             <div class="col">
-              <div class="card h-100 border shadow-sm custom-card">
-                <div class="card-body">
-                  <span class="badge bg-info-subtle text-info-emphasis mb-2"><i class="bi bi-cpu me-1"></i> Java OOP</span>
-                  <h3 class="h5 card-title fw-bold text-dark mb-2">Solusi Studi Kasus OOP</h3>
-                  <p class="card-text text-muted small">Implementasi arsitektur pemrograman berorientasi objek dalam pemecahan kasus kompleks.</p>
+              <div class="card h-100 project-card-pro border">
+                <div class="project-header p-3 bg-gradient-indigo text-white d-flex justify-content-between align-items-center">
+                  <span class="badge bg-white text-dark fw-bold">Java & OOP</span>
+                  <i class="bi bi-cpu-fill fs-5"></i>
                 </div>
-                <div class="card-footer bg-transparent border-0 pt-0 pb-3">
-                  <button type="button" class="btn btn-outline-secondary btn-sm w-100 disabled fw-bold">Internal IT Del</button>
+                <div class="card-body p-4">
+                  <h3 class="h5 fw-bold text-dark mb-2">Solusi Studi Kasus OOP</h3>
+                  <p class="text-muted small mb-3">Penerapan arsitektur Object-Oriented Programming untuk studi kasus analisis sistem bisnis.</p>
+                  <div class="d-flex flex-wrap gap-1 mb-2">
+                    <span class="tag-badge">Java</span>
+                    <span class="tag-badge">OOP Architecture</span>
+                  </div>
+                </div>
+                <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
+                  <button type="button" class="btn btn-light btn-sm w-100 text-muted disabled fw-bold rounded-2">Internal Kampus</button>
                 </div>
               </div>
             </div>
-
           </div>
         </section>
 
-        <!-- SECTION 3: MODERNISASI FORMULIR LAYANAN -->
-        <section id="layanan" class="card border-0 shadow-sm p-4 mb-4">
-          <h2 class="h4 fw-bold text-dark mb-1">Pemesanan Layanan Konsultasi & Kolaborasi</h2>
-          <p class="text-muted small mb-4">Isi formulir modern di bawah ini untuk berdiskusi seputar proyek UI/UX atau Web Frontend.</p>
+        <!-- SECTION 3: PRESTASI & ORGANISASI (HIMSI) -->
+        <section id="pengalaman" class="pro-card p-4 p-md-5 mb-4">
+          <div class="mb-4">
+            <span class="text-primary fw-bold text-uppercase extra-small tracking-wider">Pencapaian & Kontribusi</span>
+            <h2 class="h3 fw-bold text-dark mb-0">Prestasi & Pengalaman Organisasi</h2>
+          </div>
+
+          <!-- Prestasi Utama -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <div class="achievement-card p-3 border rounded-3 d-flex align-items-center gap-3">
+                <div class="achieve-icon bg-warning-subtle text-warning"><i class="bi bi-trophy-fill fs-3"></i></div>
+                <div>
+                  <strong class="d-block text-dark small fw-bold">Juara 2 E2R Summer Academy</strong>
+                  <span class="text-muted extra-small">Kompetisi Nasional Se-Indonesia</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="achievement-card p-3 border rounded-3 d-flex align-items-center gap-3">
+                <div class="achieve-icon bg-info-subtle text-info"><i class="bi bi-journal-text fs-3"></i></div>
+                <div>
+                  <strong class="d-block text-dark small fw-bold">Publikasi Jurnal Nasional</strong>
+                  <span class="text-muted extra-small">Penulisan Karya Ilmiah Terstruktur</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Pengalaman Organisasi -->
+          <h3 class="h6 fw-bold text-dark mb-3"><i class="bi bi-diagram-3-fill text-primary me-2"></i> Rekam Jejak Kepemimpinan & Kepanitiaan</h3>
+          <div class="timeline-container">
+            <div class="timeline-item pb-3 mb-3 border-bottom border-light">
+              <div class="fw-bold text-dark small">Kakak Asuh IT Del <span class="badge bg-light text-primary border ms-2">2025 - 2026</span></div>
+              <p class="text-muted extra-small mb-0">Membimbing dan mentransfer nilai karakter serta pendampingan akademik mahasiswa baru.</p>
+            </div>
+            <div class="timeline-item pb-3 mb-3 border-bottom border-light">
+              <div class="fw-bold text-dark small">Himpunan Mahasiswa Sistem Informasi (HIMSI)</div>
+              <p class="text-muted extra-small mb-0">Anggota aktif Divisi Multimedia dalam produksi media visual Himpunan.</p>
+            </div>
+            <div class="timeline-item pb-3 mb-3 border-bottom border-light">
+              <div class="fw-bold text-dark small">Kepanitiaan Resmi IT Del</div>
+              <p class="text-muted extra-small mb-0">Divisi Acara Kaderisasi SI (2026), Divisi Konsumsi Inagurasi IDG (2025), dan Panitia Del Fest (2024).</p>
+            </div>
+            <div class="timeline-item">
+              <div class="fw-bold text-dark small">Unit Kegiatan Mahasiswa</div>
+              <p class="text-muted extra-small mb-0">Del Basket Club IT Del.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4: FORMULIR LAYANAN ELEGAN WITH VALIDATION -->
+        <section id="layanan" class="pro-card p-4 p-md-5 mb-4">
+          <div class="mb-4">
+            <span class="text-primary fw-bold text-uppercase extra-small tracking-wider">Portal Kolaborasi</span>
+            <h2 class="h3 fw-bold text-dark mb-0">Pemesanan Layanan Konsultasi</h2>
+          </div>
 
           <form action="#" method="POST" class="needs-validation" novalidate>
-            <!-- Input Group Berikon + Floating Label (Email) -->
+            <!-- Email Input Group -->
             <div class="input-group mb-3">
-              <span class="input-group-text bg-light text-muted"><i class="bi bi-envelope-at-fill"></i></span>
+              <span class="input-group-text bg-light border-end-0 text-primary"><i class="bi bi-envelope-at-fill"></i></span>
               <div class="form-floating flex-grow-1">
-                <input type="email" class="form-control" id="floatingEmail" placeholder="nama@domain.com" required>
+                <input type="email" class="form-control border-start-0" id="floatingEmail" placeholder="nama@domain.com" required>
                 <label for="floatingEmail">Alamat Email Resmi *</label>
-                <div class="invalid-feedback">Alamat email valid wajib diisi.</div>
+                <div class="invalid-feedback">Alamat email valid wajib disertakan.</div>
               </div>
             </div>
 
-            <!-- Input Group Berikon + Floating Label (Nama) -->
+            <!-- Nama Input Group -->
             <div class="input-group mb-3">
-              <span class="input-group-text bg-light text-muted"><i class="bi bi-person-fill"></i></span>
+              <span class="input-group-text bg-light border-end-0 text-primary"><i class="bi bi-person-fill"></i></span>
               <div class="form-floating flex-grow-1">
-                <input type="text" class="form-control" id="floatingNama" placeholder="Nama Lengkap" required>
-                <label for="floatingNama">Nama Lengkap *</label>
-                <div class="invalid-feedback">Nama lengkap tidak boleh kosong.</div>
+                <input type="text" class="form-control border-start-0" id="floatingNama" placeholder="Nama Lengkap" required>
+                <label for="floatingNama">Nama Lengkap Pemesan *</label>
+                <div class="invalid-feedback">Nama lengkap wajib diisi.</div>
               </div>
             </div>
 
-            <!-- Select Category -->
+            <!-- Kategori Layanan -->
             <div class="form-floating mb-3">
-              <select class="form-select" id="floatingSelect" aria-label="Kategori Layanan" required>
+              <select class="form-select" id="floatingSelect" required>
                 <option value="" selected disabled>-- Pilih Kategori Layanan --</option>
                 <option value="uiux">Perancangan UI/UX Design & Prototype (Figma)</option>
                 <option value="frontend">Pengembangan Web Frontend Responsif</option>
                 <option value="consultation">Konsultasi Sistem Informasi & Logic OOP</option>
               </select>
-              <label for="floatingSelect"><i class="bi bi-list-stars me-1"></i> Kategori Layanan *</label>
-              <div class="invalid-feedback">Pilih salah satu kategori layanan.</div>
+              <label for="floatingSelect"><i class="bi bi-stars text-primary me-1"></i> Kategori Layanan *</label>
+              <div class="invalid-feedback">Silakan pilih kategori layanan.</div>
             </div>
 
-            <!-- Floating Label Pesan/Deskripsi -->
+            <!-- Deskripsi Textarea -->
             <div class="form-floating mb-3">
               <textarea class="form-control" id="floatingTextarea" placeholder="Deskripsi Proyek" style="height: 120px" required></textarea>
-              <label for="floatingTextarea"><i class="bi bi-chat-left-text me-1"></i> Deskripsi Ringkas Proyek *</label>
-              <div class="invalid-feedback">Tuliskan deskripsi ringkas kebutuhan Anda.</div>
+              <label for="floatingTextarea"><i class="bi bi-chat-left-text text-primary me-1"></i> Deskripsi Ringkas Proyek *</label>
+              <div class="invalid-feedback">Tuliskan penjelasan ringkas kebutuhan Anda.</div>
             </div>
 
-            <!-- Checkbox Syarat & Ketentuan -->
+            <!-- Persetujuan Checkbox -->
             <div class="form-check mb-4">
-              <input class="form-check-input" type="checkbox" value="" id="checkTerms" required>
+              <input class="form-check-input" type="checkbox" id="checkTerms" required>
               <label class="form-check-label small text-muted" for="checkTerms">
                 Saya menyetujui syarat & ketentuan pengolahan data konsultasi akademik IT Del. *
               </label>
               <div class="invalid-feedback">Anda harus menyetujui syarat & ketentuan.</div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold shadow-sm"><i class="bi bi-paperplane-fill me-1"></i> Kirim Pesan Konsultasi</button>
+            <button type="submit" class="btn btn-primary-pro w-100 py-3 fw-bold rounded-3">
+              <i class="bi bi-paperplane-fill me-2"></i>Kirim Pesan Konsultasi
+            </button>
           </form>
         </section>
 
       </main>
 
-      <!-- ASIDE SIDEBAR -->
+      <!-- SIDEBAR (4-Kolom Desktop) -->
       <aside class="col-lg-4">
-        <div class="card border-0 shadow-sm p-4 mb-4">
+        <div class="sidebar-pro-card p-4 mb-4">
           <h3 class="h6 fw-bold text-dark mb-3"><i class="bi bi-building-fill text-primary me-2"></i> Informasi Akademik</h3>
           <p class="small text-muted mb-2">S1 Sistem Informasi<br>Institut Teknologi Del</p>
           <ul class="list-unstyled small text-secondary mb-0">
-            <li class="mb-1"><strong>NIM:</strong> 12S24044</li>
-            <li class="mb-1"><strong>Domisili:</strong> Medan / Toba</li>
-            <li><strong>Status:</strong> Mahasiswa Aktif</li>
+            <li class="mb-2 d-flex align-items-center gap-2"><i class="bi bi-hash text-primary"></i> <strong>NIM:</strong> 12S24044</li>
+            <li class="mb-2 d-flex align-items-center gap-2"><i class="bi bi-geo-alt-fill text-primary"></i> <strong>Domisili:</strong> Medan / Toba</li>
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle-fill text-success"></i> <strong>Status:</strong> Mahasiswa Aktif</li>
           </ul>
         </div>
 
-        <div class="card border-0 shadow-sm p-4 mb-4">
-          <h3 class="h6 fw-bold text-dark mb-3"><i class="bi bi-card-heading text-primary me-2"></i> Kontak Resmi</h3>
+        <div class="sidebar-pro-card p-4 mb-4">
+          <h3 class="h6 fw-bold text-dark mb-3"><i class="bi bi-person-lines-fill text-primary me-2"></i> Kontak Resmi</h3>
           <ul class="list-unstyled small mb-0">
-            <li class="mb-2"><i class="bi bi-envelope-fill text-primary me-2"></i> <a href="mailto:dianitaginting06@gmail.com" class="text-decoration-none">dianitaginting06@gmail.com</a></li>
-            <li class="mb-2"><i class="bi bi-github text-primary me-2"></i> <a href="https://github.com/Dianitaginting" target="_blank" class="text-decoration-none">Dianitaginting</a></li>
-            <li><i class="bi bi-geo-alt-fill text-primary me-2"></i> Institut Teknologi Del</li>
+            <li class="mb-3 d-flex align-items-center gap-2">
+              <i class="bi bi-envelope-fill text-primary"></i> 
+              <a href="mailto:dianitaginting06@gmail.com" class="text-decoration-none text-dark fw-semibold">dianitaginting06@gmail.com</a>
+            </li>
+            <li class="mb-3 d-flex align-items-center gap-2">
+              <i class="bi bi-github text-primary"></i> 
+              <a href="https://github.com/Dianitaginting" target="_blank" class="text-decoration-none text-dark fw-semibold">Dianitaginting</a>
+            </li>
+            <li class="d-flex align-items-center gap-2 text-muted">
+              <i class="bi bi-geo-alt-fill text-danger"></i> Institut Teknologi Del
+            </li>
           </ul>
         </div>
 
-        <div class="card border-0 border-start border-primary border-4 shadow-sm p-4 bg-white">
-          <h3 class="h6 fw-bold text-dark mb-2"><i class="bi bi-shield-check text-primary me-1"></i> Jaminan Kualitas</h3>
-          <p class="small text-muted mb-0">Antarmuka dibangun dengan sistem Grid Responsif Bootstrap 5.3, variabel CSS terstruktur, serta kriteria WCAG 2.2 Level AA.</p>
+        <div class="quality-card p-4">
+          <h3 class="h6 fw-bold text-dark mb-2"><i class="bi bi-patch-check-fill text-primary me-2"></i> Jaminan Kualitas</h3>
+          <p class="small text-muted mb-0">Antarmuka dibangun dengan Sistem Grid Responsif Bootstrap 5.3, variabel CSS kustom, dan memenuhi standar WCAG 2.2 AA.</p>
         </div>
       </aside>
     </div>
@@ -258,21 +363,18 @@
   <!-- MODAL DIALOG 1 (Globora Detail) -->
   <div class="modal fade" id="modalGlobora" tabindex="-1" aria-labelledby="modalGloboraLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header border-0 bg-primary text-white">
-          <h3 class="modal-title h5 fw-bold" id="modalGloboraLabel"><i class="bi bi-figma me-2"></i> Detail Proyek: Globora</h3>
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header bg-primary text-white border-0">
+          <h3 class="modal-title h5 fw-bold" id="modalGloboraLabel"><i class="bi bi-figma me-2"></i> Globora — Detail Proyek</h3>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body p-4">
-          <p class="text-muted">Globora adalah platform aplikasi perancangan antarmuka (UI/UX Design) terintegrasi untuk sektor pariwisata Sumatera Utara.</p>
-          <ul class="list-unstyled small text-secondary">
+          <p class="text-muted small">Globora adalah platform aplikasi perancangan antarmuka (UI/UX Design) terintegrasi untuk sektor pariwisata Sumatera Utara.</p>
+          <ul class="list-unstyled small text-secondary mb-0">
             <li class="mb-2"><strong>Peran Utama:</strong> UI/UX Designer</li>
             <li class="mb-2"><strong>Tools:</strong> Figma, Wireframing, High-Fidelity Prototype</li>
             <li><strong>Fitur Kunci:</strong> Pemesanan Tiket Wisata, Peta Terpadu, dan User Flow Intuitif.</li>
           </ul>
-        </div>
-        <div class="modal-footer border-0">
-          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Tutup</button>
         </div>
       </div>
     </div>
@@ -281,21 +383,18 @@
   <!-- MODAL DIALOG 2 (SiMuni Detail) -->
   <div class="modal fade" id="modalSiMuni" tabindex="-1" aria-labelledby="modalSiMuniLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header border-0 bg-success text-white">
-          <h3 class="modal-title h5 fw-bold" id="modalSiMuniLabel"><i class="bi bi-heart-pulse-fill me-2"></i> Detail Proyek: SiMuni</h3>
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header bg-success text-white border-0">
+          <h3 class="modal-title h5 fw-bold" id="modalSiMuniLabel"><i class="bi bi-heart-pulse-fill me-2"></i> SiMuni — Detail Proyek</h3>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body p-4">
-          <p class="text-muted">SiMuni merupakan aplikasi pendukung kesehatan masyarakat dalam memantau dan memberikan notifikasi pengingat imunisasi anak secara presisi.</p>
-          <ul class="list-unstyled small text-secondary">
+          <p class="text-muted small">SiMuni merupakan aplikasi pendukung kesehatan masyarakat dalam memantau dan memberikan notifikasi pengingat imunisasi anak secara presisi.</p>
+          <ul class="list-unstyled small text-secondary mb-0">
             <li class="mb-2"><strong>Peran Utama:</strong> UI/UX Designer & System Analyst</li>
             <li class="mb-2"><strong>Tools:</strong> Figma Design System, User Journey Mapping</li>
             <li><strong>Fitur Kunci:</strong> Jadwal Otomatis Imunisasi, Kartu Imunisasi Digital, & Notifikasi.</li>
           </ul>
-        </div>
-        <div class="modal-footer border-0">
-          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Tutup</button>
         </div>
       </div>
     </div>
@@ -305,10 +404,10 @@
     <p class="mb-0">&copy; 2026 Dianita Lorensia Br Ginting (NIM: 12S24044) - S1 Sistem Informasi IT Del. All Rights Reserved.</p>
   </footer>
 
-  <!-- Bootstrap 5.3.3 JS Bundle CDN (Wajib untuk Navbar Collapse & Modal) -->
+  <!-- Bootstrap 5.3.3 JS Bundle CDN -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/bootstrap.bundle.min.js"></script>
 
-  <!-- Script Validasi Form Native Bootstrap -->
+  <!-- Script Validasi Native Bootstrap -->
   <script>
     (() => {
       'use strict'
