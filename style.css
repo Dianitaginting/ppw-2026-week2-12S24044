@@ -1,23 +1,26 @@
 /* =============================================================
-   LAB 1: CSS Custom Properties & Pseudo-Elements (Lab 1)
+   CUSTOM OVERRIDES & THEMING (BOOTSTRAP 5 INTEGRATION)
    ============================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
+/* 1. MENDENFINISIKAN MINIMAL 6 VARIABEL CSS PADA :root */
 :root {
-  --primary-brand: #0284c7;
-  --primary-hover: #0369a1;
+  --primary-brand: #2563eb;
+  --primary-hover: #1d4ed8;
+  --dark-navy: #0f172a;
   --surface-bg: #ffffff;
   --border-color: #e2e8f0;
-  --card-radius: 12px;
-  --shadow-lift: 0 10px 20px -3px rgba(0, 0, 0, 0.08);
+  --text-muted: #64748b;
+  --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+  --shadow-lift: 0 12px 25px -4px rgba(37, 99, 235, 0.15);
 }
 
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  color: #0f172a;
+  color: var(--dark-navy);
 }
 
-/* AVATAR CROPPING & ZOOM */
+/* 2. AVATAR CROPPING & ZOOM */
 .avatar-wrapper {
   width: 110px;
   height: 110px;
@@ -32,14 +35,12 @@ body {
   transform: scale(1.6);
 }
 
-/* LAB 1: Penataan Gaya Mikro-Interaksi dengan Pseudo-Element ::before */
+/* 3. MIKRO-INTERAKSI HOVER KARTU METRIK & PORTOFOLIO */
 .metric-card {
   position: relative;
   background: var(--surface-bg);
   border: 1px solid var(--border-color);
-  border-radius: 14px;
-  padding: 18px;
-  overflow: hidden;
+  border-radius: 12px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -63,4 +64,21 @@ body {
 .metric-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lift);
+}
+
+.custom-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-color: var(--border-color);
+}
+
+.custom-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+  border-color: var(--primary-brand);
+}
+
+/* 4. OVERRIDE WARNA FORM FLOATING LABELS */
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary-brand);
+  box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
 }

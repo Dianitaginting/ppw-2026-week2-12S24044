@@ -1,14 +1,27 @@
-# Pengembangan Halaman Web Portofolio & Layanan Interaktif Accessible Berbasis HTML5 dan Modern CSS
+# Refactoring Portofolio & Service Portal Berbasis Bootstrap 5.3
 
-Repositori ini memuat pengerjaan Tugas Mandiri mata kuliah Web Application Programming and Testing.
+Dokumentasi refactoring Tugas Mandiri Minggu 3 mata kuliah Pemrograman dan Pengujian Web (12S3101).
 
-## Fitur Utama & Spesifikasi Teknis
-- **Struktur Semantik HTML5**: Menggunakan `<header>`, `<nav>`, `<main>`, `<section>`, `<aside>`, dan `<footer>`.
-- **Daftar & Data Tabular**: Tabel semantik lengkap dengan atribut `scope` dan `caption`, serta daftar berbentuk `<ul>` dan `<ol>`.
-- **Formulir Interaktif & Accessible**: Memiliki 2 `<fieldset>`, lebih dari 6 tipe kontrol input (`text`, `email`, `tel`, `number`, `radio`, `checkbox`, `select`, `textarea`), dan telah lolos pengujian label eksplisit WCAG 2.2 Level AA.
-- **Styling CSS Modern**: Universal reset, CSS Grid & Flexbox, palet warna aturan 60-30-10, serta Media Queries untuk tampilan responsif mobile.
+## Informasi Pengembang
+- **Nama:** Dianita Lorensia Br Ginting
+- **NIM:** 12S24044
+- **Program Studi:** S1 Sistem Informasi
+- **Institut:** Institut Teknologi Del
 
-## Teknologi yang Digunakan
-- HTML5
-- CSS3 (Flexbox & Grid)
-- Git & GitHub Pages
+---
+
+## Tabel Komparasi: Sebelum vs Sesudah Integrasi Framework
+
+| Aspek Evaluasi | Sebelum Integrasi (Minggu 2 - Pure CSS) | Sesudah Integrasi (Minggu 3 - Bootstrap 5.3) |
+| :--- | :--- | :--- |
+| **Sistem Layout & Grid** | Menggunakan CSS Grid & Flexbox manual via media query kustom di `style.css`. | Menggunakan sistem Grid 12-kolom responsif bawaan Bootstrap (`.container`, `.row`, `.col-lg-*`). |
+| **Navigasi Mobile** | Menu navigasi vertikal standar tanpa efek collapsible. | Responsive Navbar dengan tombol *hamburger toggle* (`data-bs-toggle="collapse"`) tanpa error. |
+| **Tampilan Portofolio** | Tabel data semantik biasa. | Grid kartu interaktif (`.card`) lengkap dengan **Modal Dialog** (`.modal`) untuk popup detail proyek. |
+| **Formulir Layanan** | Kontrol input HTML5 standar. | Ditingkatkan dengan **Floating Labels** (`.form-floating`), Input Groups berikon, dan validasi visual (`.invalid-feedback`). |
+| **Arsitektur CSS** | CSS murni terpisah tanpa framework. | Kompatibel dengan Bootstrap CDN dipadukan dengan **6+ variabel CSS (`:root`)** pada Custom Overrides. |
+
+---
+
+## Tautan Publikasi
+- **Repositori GitHub:** [https://github.com/Dianitaginting/ppw-2026-week2-12S24044](https://github.com/Dianitaginting/ppw-2026-week2-12S24044)
+- **Live Demo (GitHub Pages):** [https://Dianitaginting.github.io/ppw-2026-week2-12S24044/](https://Dianitaginting.github.io/ppw-2026-week2-12S24044/)
