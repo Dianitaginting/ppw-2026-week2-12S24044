@@ -1,0 +1,58 @@
+[
+  {
+    "id": "globora",
+    "title": "Globora",
+    "category": "UI/UX Design",
+    "badgeClass": "bg-primary",
+    "icon": "bi-figma",
+    "summary": "Platform digital pariwisata terpadu dengan pemesanan tiket otomatis dan navigasi rute intuitif.",
+    "description": "Globora adalah platform aplikasi perancangan antarmuka (UI/UX Design) terintegrasi untuk sektor pariwisata Sumatera Utara.",
+    "thumbnail": "foto-profil.jpeg",
+    "tags": ["Figma", "Wireframing"],
+    "role": "UI/UX Designer",
+    "tools": "Figma, Wireframing, High-Fidelity Prototype",
+    "keyFeatures": "Pemesanan Tiket Wisata, Peta Terpadu, dan User Flow Intuitif."
+  },
+  {
+    "id": "simuni",
+    "title": "SiMuni",
+    "category": "Health Tech",
+    "badgeClass": "bg-success",
+    "icon": "bi-heart-pulse-fill",
+    "summary": "Sistem pengingat dan rekam medis imunisasi anak berbasis mobile web responsif.",
+    "description": "SiMuni merupakan aplikasi pendukung kesehatan masyarakat dalam memantau dan memberikan notifikasi pengingat imunisasi anak secara presisi.",
+    "thumbnail": "foto-profil.jpeg",
+    "tags": ["System Design", "UI Prototype"],
+    "role": "UI/UX Designer & System Analyst",
+    "tools": "Figma Design System, User Journey Mapping",
+    "keyFeatures": "Jadwal Otomatis Imunisasi, Kartu Imunisasi Digital, & Notifikasi."
+  },
+  {
+    "id": "evakuasi-aceh",
+    "title": "Pemetaan Evakuasi Bencana",
+    "category": "Frontend Web",
+    "badgeClass": "bg-dark",
+    "icon": "bi-geo-alt-fill",
+    "summary": "Sistem informasi pemetaan rute evakuasi darurat di Banda Aceh berbasis JavaScript API.",
+    "description": "Aplikasi pencarian rute evakuasi bencana alam teroptimasi berbasis algoritma pencarian lokasi terdekat.",
+    "thumbnail": "foto-profil.jpeg",
+    "tags": ["JS ES6+", "HTML5/CSS3"],
+    "role": "Frontend Developer",
+    "tools": "JavaScript API, Leaflet.js, Bootstrap 5",
+    "keyFeatures": "Visualisasi Rute Evakuasi, Integrasi Peta Kebencanaan."
+  },
+  {
+    "id": "oop-solution",
+    "title": "Solusi Studi Kasus OOP",
+    "category": "Java & OOP",
+    "badgeClass": "bg-dark",
+    "icon": "bi-cpu-fill",
+    "summary": "Penerapan arsitektur Object-Oriented Programming untuk studi kasus analisis sistem bisnis.",
+    "description": "Pemodelan sistem bisnis dan manajemen domain menggunakan prinsip Object-Oriented Software Engineering.",
+    "thumbnail": "foto-profil.jpeg",
+    "tags": ["Java", "OOP Architecture"],
+    "role": "Software Engineer",
+    "tools": "Java, Eclipse, Enterprise Architect",
+    "keyFeatures": "Desain Domain Model, Penerapan Design Patterns."
+  }
+]
