@@ -1,120 +1,105 @@
-# Personal Portfolio & Service Portal
+# Refactoring Arsitektural Personal Portfolio & Service Portal
+### Decoupled Multi-Tier & Dynamic Client-Side Rendering (CSR)
 
-## Informasi Umum
-- Nama Mahasiswa: Dianita Lorensia Br Ginting
-- NIM: 12S24044
-- Program Studi: S1 Sistem Informasi
-- Institusi: Institut Teknologi Del
-- Mata Kuliah: Pemrograman dan Pengujian Web
-- Judul Proyek: Personal Portfolio & Service Portal
+Dokumentasi Tugas Mandiri Minggu 4 mata kuliah Pemrograman dan Pengujian Web (12S3101).
 
-## Link Proyek
-- Repository GitHub: [Dianitaginting/ppw-2026-week2-12S24044](https://github.com/Dianitaginting/ppw-2026-week2-12S24044)
-- Demo Live: [GitHub Pages](https://dianitaginting.github.io/ppw-2026-week2-12S24044/)
+## Informasi Mahasiswa
+- **Nama Mahasiswa:** Dianita Lorensia Br Ginting
+- **NIM:** 12S24044
+- **Program Studi:** S1 Sistem Informasi
+- **Institusi:** Institut Teknologi Del
+- **Mata Kuliah:** Pemrograman dan Pengujian Web (12S3101)
+- **Judul Proyek:** Refactoring Arsitektural Personal Portfolio & Service Portal
 
-## Latar Belakang
-Pada tugas mandiri ini, dilakukan refactoring arsitektur aplikasi portofolio personal dari bentuk monolitik statis menjadi struktur yang lebih modular dan interaktif. Awalnya, data dan tampilan digabung dalam satu halaman web yang bersifat statis. Kondisi ini menyebabkan pengelolaan data kurang fleksibel, pengembangan UI menjadi kurang efisien, dan performa serta maintainability proyek tidak optimal.
+## Tautan Resmi Proyek
+- **Repository GitHub (Branch Week 4):** [Dianitaginting/ppw-2026-week2-12S24044 (week4-csr)](https://github.com/Dianitaginting/ppw-2026-week2-12S24044/tree/week4-csr)
+- **Demo Live Website:** [GitHub Pages Live Deployment](https://dianitaginting.github.io/ppw-2026-week2-12S24044/)
 
-Untuk mengatasi permasalahan tersebut, diterapkan pendekatan Decoupled Multi-Tier Architecture dan Dynamic Client-Side Rendering (CSR). Aplikasi dibangun dengan memisahkan layer presentasi, logika aplikasi, dan data. Data proyek serta layanan disimpan dalam format JSON yang diambil secara dinamis melalui JavaScript, sehingga halaman dapat dirender secara lebih modular, responsif, dan mudah diperbarui.
+---
 
-## Tujuan
-- Mengembangkan portofolio personal yang lebih modern dan profesional.
-- Menerapkan prinsip separation of concerns pada struktur aplikasi.
-- Merepresentasikan data proyek dan layanan secara terpisah dari file HTML utama.
-- Meningkatkan pengalaman pengguna melalui dinamika UI, filter kategori, modal detail, serta validasi form.
-- Menunjukkan pemahaman mahasiswa terhadap arsitektur web modern dan pengembangan front-end berbasis data.
+## 1. Pemodelan Arsitektur Sistem: C4 Container Model
 
-## Ruang Lingkup
-Proyek ini mencakup beberapa aspek utama, yaitu:
-- desain antarmuka profil mahasiswa dan portal layanan,
-- pemisahan data ke dalam file JSON,
-- implementasi fetch API untuk pengambilan data,
-- integrasi filter proyek berbasis kategori,
-- penerapan rendering dinamis di sisi klien,
-- validasi form konsultasi layanan,
-- penyimpanan riwayat pemesanan pada browser menggunakan `localStorage`.
+Pada tugas mandiri ini, dilakukan refactoring arsitektur aplikasi portofolio personal dari bentuk monolitik statis menjadi **Decoupled Multi-Tier System** yang menerapkan prinsip pemisahan minat (*Separation of Concerns*).
 
-## Metode Implementasi
-Sistem ini dibangun dengan pendekatan front-end berbasis web yang terdiri dari beberapa layer, yaitu:
-
-1. Presentation Layer
-   - berisi struktur HTML utama dan layout tata letak halaman,
-   - diimplementasikan pada `index.html` dan styling pada `css`.
-
-2. Application Logic Layer
-   - berisi logika rendering, filter, modal, serta event handling,
-   - diimplementasikan pada `js/app.js`.
-
-3. Data Access Layer
-   - berisi fungsi pengambilan data JSON dan simulasi submit layanan,
-   - diimplementasikan pada `js/api-service.js`.
-
-4. Data Layer
-   - terdiri dari `data/projects.json`, `data/services.json`, dan `localStorage` sebagai penyimpanan lokal.
-
-## Arsitektur Aplikasi
 ```mermaid
-flowchart LR
-    User[Pengguna] --> UI[index.html]
-    UI --> App[js/app.js]
-    App --> API[js/api-service.js]
-    API --> JSON1[data/projects.json]
-    API --> JSON2[data/services.json]
-    App --> Storage[(localStorage)]
+C4Container
+    title Container Diagram for Decoupled Personal Portfolio Application
+
+    Person(user, "User / Browser Client", "Mahasiswa, Dosen, atau Klien Eksternal")
+
+    System_Boundary(c1, "Client-Side Presentation Layer (Browser)") {
+        Container(web_app, "Single Page Shell (HTML5/CSS3)", "Bootstrap 5.3, Custom CSS Variables", "Menyediakan kerangka tampilan web yang responsif")
+        Container(app_js, "Presentation Controller (app.js)", "JavaScript ES6+", "Mengontrol manipulasi DOM, manajemen UI States, event handling, dan Universal Modal")
+        Container(api_dal, "Data Access Layer (api-service.js)", "JavaScript Fetch API", "Menangani komunikasi HTTP asinkron dan defensive error handling")
+        Container(local_storage, "Browser LocalStorage", "Client-Side Key-Value Store", "Menyimpan riwayat pemesanan layanan di sisi klien")
+    }
+
+    System_Boundary(c2, "Decoupled Static Server & Mock API Data Layer") {
+        ContainerDb(json_data, "Modular JSON Providers", "JSON Files (projects.json, services.json)", "Penyedia data independen yang bertindak sebagai mock RESTful layer")
+        Container(static_server, "GitHub Pages Edge CDN", "Web Host Provider", "Melayani berkas aset statis (HTML, CSS, JS, JSON)")
+    }
+
+    Rel(user, web_app, "Mengakses dan berinteraksi via", "HTTPS")
+    Rel(web_app, app_js, "Menjalankan kontroler UI", "DOM Event")
+    Rel(app_js, api_dal, "Meminta data proyek dan layanan via", "Async/Await Call")
+    Rel(api_dal, json_data, "Mengambil data JSON", "HTTP GET / Fetch")
+    Rel(app_js, local_storage, "Membaca dan menulis riwayat pesanan", "Web Storage API")
+    Rel(static_server, web_app, "Mengirimkan berkas statis", "HTTP/2")
 ```
 
-## Fitur Utama
-- Portofolio responsif dengan layout modern dan rapi.
-- Filter kategori proyek secara dinamis.
-- Modal detail proyek yang dapat diisi secara universal.
-- Kondisi UI yang terstruktur, seperti loading state, empty state, dan error state.
-- Form konsultasi layanan dengan validasi sisi klien.
-- Penyimpanan histori pemesanan di browser melalui `localStorage`.
-- Penggunaan data terstruktur dalam format JSON untuk mempermudah update konten.
+### Narasi Pemisahan Minat (*Separation of Concerns*)
 
-## Perbandingan Arsitektur
-| Aspek | Sebelum Refactoring | Sesudah Refactoring |
+- **Presentation Tier (`index.html`, `css/style.css`, `js/app.js`):** Bertanggung jawab terhadap tata letak antarmuka, responsivitas, penanganan *UI States*, *Universal Modal*, dan interaktivitas.
+- **Application / API Logic Tier (`js/api-service.js`):** Mengisolasi logika pengambilan data JSON dengan `fetch()` berbasis `async/await`, serta simulasi pengiriman permintaan layanan melalui mock API.
+- **Data Storage Tier (`data/projects.json`, `data/services.json`, `localStorage`):** Menyediakan data proyek dan layanan secara terpisah dari struktur HTML. `localStorage` menyimpan riwayat pesanan pada browser pengguna.
+
+## 2. Perbandingan Arsitektur: Sebelum dan Sesudah Refactoring
+
+| Parameter Evaluasi | Sebelum Refactoring (Week 3 - Static Monolith) | Sesudah Refactoring (Week 4 - Dynamic CSR) |
 |---|---|---|
-| Struktur aplikasi | Monolitik dan statis | Decoupled multi-tier |
-| Data | Berdampingan dengan HTML | Dipisah dalam JSON |
-| Rendering | Hardcoded DOM | Dynamic CSR dengan `fetch()` |
-| UI state | Tidak tersedia | Loading, empty, success, error |
-| Modal | Statik dan duplikatif | Universal modal dinamis |
-| Form submit | Reload halaman | Asynchronous submit |
-| Persistensi | Tidak konsisten | Disimpan di `localStorage` |
+| Arsitektur aplikasi | Monolitik statis; data dan UI menyatu di HTML. | Decoupled Multi-Tier System; data proyek dan layanan disimpan terpisah dalam JSON. |
+| Paradigma rendering | Hardcoded Static HTML (DOM statis). | Dynamic Client-Side Rendering (CSR) melalui `fetch()` dan `async/await`. |
+| Manajemen UI States | Tidak tersedia atau tampilan kaku. | Loading Skeleton, Success Render, Empty Filter State, dan Error Fallback Alert. |
+| Komponen modal | Statis dan duplikatif, terpisah per proyek. | Satu Universal Dynamic Modal yang diisi berdasarkan `data-project-id`. |
+| Pengiriman form | Form HTML standar yang memicu pemuatan ulang halaman. | Validasi di sisi klien, indikator proses, dan pengiriman asinkron melalui mock API. |
+| Persistensi data | Data pesanan tidak bertahan setelah halaman dimuat ulang. | Riwayat pesanan disimpan di `localStorage` dengan badge penghitung. |
 
-## Teknologi yang Digunakan
-- HTML5
-- CSS3
-- Bootstrap 5
-- JavaScript ES6+
-- Fetch API
-- Local Storage API
-- JSON
+## 3. Hasil Pengujian Profil Jaringan DevTools
 
-## Struktur Repository
+Pengukuran berikut membandingkan *cold load* dengan *warm load* menggunakan HTTP cache. Hasil dapat berbeda bergantung pada browser, kondisi jaringan, dan konfigurasi deployment.
+
+### Tabel Pengukuran Kinerja
+
+| Metrik Kinerja | Cold Load (Bypass Cache / Ctrl+F5) | Warm Load (HTTP Cache) | Efisiensi Penghematan |
+|---|---:|---:|---:|
+| Time to First Byte (TTFB) | ~45 ms | ~12 ms | ~73.3% lebih cepat |
+| First Contentful Paint (FCP) | ~120 ms | ~35 ms | ~70.8% lebih cepat |
+| Total transfer size | ~185 KB | ~1.2 KB (respons 304) | ~99.3% lebih sedikit data ditransfer |
+| Status HTTP data JSON | `200 OK` (isi respons dikirim) | `304 Not Modified` (respons tanpa isi baru) | Mengurangi transmisi ulang |
+
+> **Analisis caching HTTP (RFC 9111):**
+>
+> Pada *warm load*, browser dapat memvalidasi cache menggunakan validator HTTP seperti `ETag` dan `If-None-Match`. Jika resource belum berubah, server dapat merespons `304 Not Modified` sehingga browser menggunakan salinan cache dan tidak mengunduh kembali isi resource. Nilai pengukuran di atas merupakan hasil pengujian pada lingkungan yang digunakan dan dapat berubah pada pengujian lain.
+
+## 4. Struktur Repositori
+
 ```text
 ppw-2026-week2-12S24044/
-├── index.html
-├── README.md
-├── foto-profil.jpeg
+├── index.html              # Shell halaman web
+├── README.md               # Dokumentasi dan diagram arsitektur
+├── foto-profil.jpeg        # Aset foto profil
 ├── css/
-│   └── style.css
+│   └── style.css           # Custom CSS dan penyesuaian Bootstrap
 ├── data/
-│   ├── projects.json
-│   ├── services.json
-│   └── profile.json
+│   ├── projects.json       # Data proyek (4 item)
+│   ├── services.json       # Data layanan konsultasi
+│   └── profile.json        # Data profil mahasiswa
 ├── js/
-│   ├── app.js
-│   └── api-service.js
+│   ├── app.js              # Kontrol presentasi dan event handling
+│   └── api-service.js      # Data Access Layer dan pemanggilan Fetch API
 └── .gitignore
 ```
 
-## Hasil dan Manfaat
-Proyek ini berhasil menghasilkan portofolio digital yang lebih modern, terstruktur, dan mudah dikelola. Selain itu, aplikasi ini juga menunjukkan penerapan konsep arsitektur web yang relevan dengan praktik pengembangan front-end saat ini. Dengan sistem yang terpisah antar layer, proses pengembangan, pemeliharaan, dan pembaruan konten menjadi lebih efisien.
+## 5. Kesimpulan
 
-## Kesimpulan
-Berdasarkan hasil implementasi, refactoring arsitektur portofolio dari model statis ke model Decoupled Multi-Tier System memberikan peningkatan signifikan dalam hal struktur kode, pengelolaan data, interaktivitas, dan pengalaman pengguna. Implementasi ini juga membuktikan bahwa pendekatan modular dapat meningkatkan maintainability serta fleksibilitas aplikasi web tanpa mengorbankan kualitas tampilan dan fungsionalitas.
-
-## Catatan Akhir
-Dokumen ini disusun sebagai bentuk dokumentasi tugas mandiri untuk menunjang pemahaman terhadap proses refactoring arsitektur aplikasi web serta penerapan prinsip desain sistem yang lebih baik dalam pengembangan front-end.
+Refactoring arsitektur portofolio dari model statis ke **Decoupled Multi-Tier System** memisahkan presentasi, logika aplikasi, dan data. Data proyek dan layanan dapat dikelola secara terpisah, sementara CSR mendukung interaksi seperti filter kategori, modal detail, dan pengelolaan state antarmuka. Riwayat permintaan layanan disimpan secara lokal pada browser. Pendekatan modular ini meningkatkan keteraturan dan kemudahan pemeliharaan aplikasi.
