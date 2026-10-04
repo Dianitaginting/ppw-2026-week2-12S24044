@@ -1,12 +1,13 @@
 /**
  * Presentation Layer
- * Kontrol DOM, Dynamic Rendering, UI States, Event Listeners, & Modal Universal
+ * Kontrol DOM, Dynamic Rendering, UI States, Filter Kategori, Universal Modal, & Badge Order Reaktif
  */
 class App {
   constructor() {
     this.state = {
       projects: [],
-      services: []
+      services: [],
+      activeFilter: 'all'
     };
     this.init();
   }
@@ -21,8 +22,10 @@ class App {
       this.state.projects = projects;
       this.state.services = services;
 
+      this.renderFilterButtons();
       this.renderProjects(this.state.projects);
       this.renderServiceOptions(this.state.services);
+      this.updateOrderBadge();
     } catch (error) {
       this.renderErrorState('Gagal memuat data portofolio dari server. Silakan coba muat ulang halaman.');
     }
@@ -34,7 +37,6 @@ class App {
     const container = document.getElementById('projectGridContainer');
     if (!container) return;
     
-    // Skeleton Loader
     container.innerHTML = Array(4).fill(0).map(() => `
       <div class="col">
         <div class="card h-100 border shadow-sm p-3">
@@ -63,21 +65,37 @@ class App {
     `;
   }
 
+  renderFilterButtons() {
+    const categories = ['all', ...new Set(this.state.projects.map(p => p.category))];
+    const filterContainer = document.getElementById('projectFilterContainer');
+    if (!filterContainer) return;
+
+    filterContainer.innerHTML = categories.map(cat => `
+      <button type="button" class="btn btn-sm ${cat === this.state.activeFilter ? 'btn-primary' : 'btn-outline-secondary'} rounded-pill px-3 me-2 mb-2 btn-filter" data-category="${cat}">
+        ${cat === 'all' ? 'Semua Proyek' : this.escapeHTML(cat)}
+      </button>
+    `).join('');
+  }
+
   renderProjects(projects) {
     const container = document.getElementById('projectGridContainer');
     if (!container) return;
 
-    if (projects.length === 0) {
+    const filtered = this.state.activeFilter === 'all' 
+      ? projects 
+      : projects.filter(p => p.category === this.state.activeFilter);
+
+    if (filtered.length === 0) {
       container.innerHTML = `
         <div class="col-12 text-center text-muted py-5">
           <i class="bi bi-inbox fs-1 d-block mb-2"></i>
-          <p>Belum ada data proyek yang tersedia.</p>
+          <p class="mb-0">Tidak ada proyek ditemukan untuk kategori "<strong>${this.escapeHTML(this.state.activeFilter)}</strong>".</p>
         </div>
       `;
       return;
     }
 
-    container.innerHTML = projects.map(proj => `
+    container.innerHTML = filtered.map(proj => `
       <div class="col">
         <div class="card h-100 project-card-pro border">
           <div class="project-header p-3 ${proj.badgeClass} text-white d-flex justify-content-between align-items-center">
@@ -111,7 +129,6 @@ class App {
     `;
   }
 
-  // Universal Dynamic Modal Opener
   openProjectModal(projectId) {
     const proj = this.state.projects.find(p => p.id === projectId);
     if (!proj) return;
@@ -134,7 +151,17 @@ class App {
   }
 
   bindEvents() {
-    // Event Delegation untuk Modal Opener
+    // Filter Kategori
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-filter');
+      if (btn) {
+        this.state.activeFilter = btn.getAttribute('data-category');
+        this.renderFilterButtons();
+        this.renderProjects(this.state.projects);
+      }
+    });
+
+    // Modal Opener
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.btn-open-modal');
       if (btn) {
@@ -143,7 +170,7 @@ class App {
       }
     });
 
-    // Form Submit Handler (AJAX/Fetch POST Asinkron)
+    // Form Submit Asinkron
     const form = document.querySelector('.needs-validation');
     if (form) {
       form.addEventListener('submit', async (e) => {
@@ -163,13 +190,14 @@ class App {
         submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Mengirim...';
 
         try {
-          const result = await ApiService.submitServiceOrder(payload);
+          await ApiService.submitServiceOrder(payload);
           this.saveOrderToLocalStorage(payload);
-          this.showToastNotification('Sukses!', 'Permintaan layanan berhasil diproses.');
+          this.updateOrderBadge();
+          this.showToastNotification('Sukses!', 'Permintaan layanan berhasil diproses dan disimpan.');
           form.reset();
           form.classList.remove('was-validated');
         } catch (err) {
-          this.showToastNotification('Gagal!', 'Terjadi kesalahan saat memproses layanan.', 'danger');
+          this.showToastNotification('Gagal!', 'Terjadi kesalahan saat mengirim form.', 'danger');
         } finally {
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="bi bi-paperplane-fill me-2"></i>Kirim Pesan Konsultasi';
@@ -182,6 +210,14 @@ class App {
     const history = JSON.parse(localStorage.getItem('service_orders') || '[]');
     history.push({ ...payload, timestamp: new Date().toISOString() });
     localStorage.setItem('service_orders', JSON.stringify(history));
+  }
+
+  updateOrderBadge() {
+    const history = JSON.parse(localStorage.getItem('service_orders') || '[]');
+    const badgeEl = document.getElementById('orderCountBadge');
+    if (badgeEl) {
+      badgeEl.textContent = `${history.length} Pesanan Tersimpan`;
+    }
   }
 
   showToastNotification(title, message, type = 'success') {
@@ -206,7 +242,6 @@ class App {
   }
 }
 
-// Inisialisasi Aplikasi setelah DOM Siap
 document.addEventListener('DOMContentLoaded', () => {
   window.app = new App();
 });

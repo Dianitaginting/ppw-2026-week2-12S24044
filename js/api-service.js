@@ -1,6 +1,6 @@
 /**
  * Data Access Layer (DAL)
- * Bertanggung jawab menangani seluruh permintaan HTTP/Fetch API dan penanganan error
+ * Bertanggung jawab menangani permintaan HTTP/Fetch API dan error handling
  */
 class ApiService {
   static async fetchProjects() {
@@ -30,7 +30,6 @@ class ApiService {
   }
 
   static async submitServiceOrder(payload) {
-    // Simulasi pengiriman REST API POST dengan latensi jaringan (1 detik)
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
