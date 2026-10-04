@@ -23,28 +23,28 @@ Pada tugas mandiri ini, dilakukan refactoring arsitektur aplikasi portofolio per
 
 ```mermaid
 C4Container
-    title Container Diagram for Decoupled Personal Portfolio Application
+    title Container Diagram for Decoupled Multi-Tier Personal Portfolio Application
 
     Person(user, "User / Browser Client", "Mahasiswa, Dosen, atau Klien Eksternal")
 
-    System_Boundary(c1, "Client-Side Presentation Layer (Browser)") {
-        Container(web_app, "Single Page Shell (HTML5/CSS3)", "Bootstrap 5.3, Custom CSS Variables", "Menyediakan kerangka tampilan web yang responsif")
-        Container(app_js, "Presentation Controller (app.js)", "JavaScript ES6+", "Mengontrol manipulasi DOM, manajemen UI States, event handling, dan Universal Modal")
-        Container(api_dal, "Data Access Layer (api-service.js)", "JavaScript Fetch API", "Menangani komunikasi HTTP asinkron dan defensive error handling")
-        Container(local_storage, "Browser LocalStorage", "Client-Side Key-Value Store", "Menyimpan riwayat pemesanan layanan di sisi klien")
+    System_Boundary(c1, "Client-Side Application Boundary (Browser)") {
+        Container(web_app, "Single Page Shell (HTML5/CSS3)", "Bootstrap 5.3", "Menyediakan kerangka tampilan web yang responsif")
+        Container(app_js, "Presentation Tier Controller (app.js)", "JavaScript ES6+", "Mengontrol manipulasi DOM, UI States, Filter, dan Universal Modal")
+        Container(api_dal, "Data Access Layer / DAL (api-service.js)", "JavaScript Fetch API", "Menangani komunikasi HTTP asinkron, DTO formatting, dan error handling")
+        Container(local_storage, "Browser LocalStorage", "Web Storage API", "Menyimpan riwayat pemesanan layanan di sisi klien")
     }
 
-    System_Boundary(c2, "Decoupled Static Server & Mock API Data Layer") {
-        ContainerDb(json_data, "Modular JSON Providers", "JSON Files (projects.json, services.json)", "Penyedia data independen yang bertindak sebagai mock RESTful layer")
-        Container(static_server, "GitHub Pages Edge CDN", "Web Host Provider", "Melayani berkas aset statis (HTML, CSS, JS, JSON)")
+    System_Boundary(c2, "Decoupled Data Tier & Static Server") {
+        ContainerDb(json_data, "Modular Data Layer", "JSON Files (projects.json, services.json, profile.json)", "Penyedia data independen bertindak sebagai Mock REST Provider")
+        Container(static_server, "GitHub Pages Edge CDN", "Web Host Provider", "Melayani berkas aset statis dan data JSON ke peramban")
     }
 
-    Rel(user, web_app, "Mengakses dan berinteraksi via", "HTTPS")
-    Rel(web_app, app_js, "Menjalankan kontroler UI", "DOM Event")
-    Rel(app_js, api_dal, "Meminta data proyek dan layanan via", "Async/Await Call")
-    Rel(api_dal, json_data, "Mengambil data JSON", "HTTP GET / Fetch")
-    Rel(app_js, local_storage, "Membaca dan menulis riwayat pesanan", "Web Storage API")
-    Rel(static_server, web_app, "Mengirimkan berkas statis", "HTTP/2")
+    Rel(user, web_app, "Mengakses antarmuka via", "HTTPS")
+    Rel(web_app, app_js, "Memicu event interaksi ke", "DOM Events")
+    Rel(app_js, api_dal, "Meminta data bisnis via", "Async Function Calls")
+    Rel(api_dal, json_data, "Mengambil data JSON mentah via", "HTTP GET / Fetch")
+    Rel(app_js, local_storage, "Membaca dan menyimpan pesanan ke", "Local State")
+    Rel(static_server, web_app, "Mengirimkan aset dan data JSON ke", "HTTP/2")
 ```
 
 ### Narasi Pemisahan Minat (*Separation of Concerns*)

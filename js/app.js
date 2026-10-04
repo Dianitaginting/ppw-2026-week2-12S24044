@@ -7,6 +7,7 @@ class App {
     this.state = {
       projects: [],
       services: [],
+      profile: null,
       activeFilter: 'all'
     };
     this.init();
@@ -15,13 +16,18 @@ class App {
   async init() {
     this.renderLoadingState();
     try {
-      const [projects, services] = await Promise.all([
+      // Mengambil 3 data provider JSON secara paralel (Decoupled Multi-Tier)
+      const [projects, services, profile] = await Promise.all([
         ApiService.fetchProjects(),
-        ApiService.fetchServices()
+        ApiService.fetchServices(),
+        ApiService.fetchProfile()
       ]);
+
       this.state.projects = projects;
       this.state.services = services;
+      this.state.profile = profile;
 
+      this.renderProfileData(profile);
       this.renderFilterButtons();
       this.renderProjects(this.state.projects);
       this.renderServiceOptions(this.state.services);
@@ -31,6 +37,17 @@ class App {
     }
 
     this.bindEvents();
+  }
+
+  renderProfileData(profile) {
+    if (!profile) return;
+
+    // Injeksi data profil dinamis jika elemen target ditemukan di DOM
+    const nameEl = document.querySelector('.pro-card h1');
+    if (nameEl) nameEl.textContent = profile.name;
+
+    const nimEl = document.querySelector('.pro-card .fw-semibold.text-dark');
+    if (nimEl && profile.nim) nimEl.textContent = `NIM: ${profile.nim}`;
   }
 
   renderLoadingState() {
@@ -151,7 +168,7 @@ class App {
   }
 
   bindEvents() {
-    // Filter Kategori
+    // Filter Kategori Instan
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.btn-filter');
       if (btn) {
@@ -170,7 +187,7 @@ class App {
       }
     });
 
-    // Form Submit Asinkron
+    // Form Submit Asinkron (No Reload)
     const form = document.querySelector('.needs-validation');
     if (form) {
       form.addEventListener('submit', async (e) => {
